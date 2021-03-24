@@ -22,7 +22,7 @@ jobs:
     - stage: unit tests
       install: skip
       jdk: oraclejdk11
-      script: mvn test -Dtest=com.napier.sem.AppTest
+      script: mvn test -Dtest=com.napier.sem.MyTest
     - stage: integration tests
       jdk: oraclejdk11
       script: mvn test -Dtest=com.napier.sem.AppIntegrationTest
@@ -34,8 +34,8 @@ jobs:
         - mvn package -DskipTests=true -Dmaven.javadoc.skip=true
       before_deploy:
         # Set up git user name and tag this commit
-        - git config --local user.name "Kevin Chalmers"
-        - git config --local user.email "k.chalmers@napier.ac.uk"
+        - git config --local user.name "Leesh2903"
+        - git config --local user.email "ldeshaw6@aol.com"
         # Create temporary tag from date and Git log.
         - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y-%m-%d')-$(git log --format=%h -1)}
         # Set tag
@@ -52,6 +52,3 @@ stages:
   - integration tests
   - name: GitHub Release
     if: branch = master
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash)
