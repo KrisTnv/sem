@@ -10,7 +10,7 @@ public class App {
         App a = new App();
 
         // Connect to database
-        a.connect();
+        a.connect("localhost:33060");
 
         // Extract employee salary information
         ArrayList<Employee> employees = a.getAllSalaries();
@@ -30,8 +30,9 @@ public class App {
 
     /**
      * Connect to the MySQL database.
+     * @param s
      */
-    public void connect() {
+    public void connect(String s) {
         try {
             // Load Database driver
             Class.forName("com.mysql.cj.jdbc.Driver");
